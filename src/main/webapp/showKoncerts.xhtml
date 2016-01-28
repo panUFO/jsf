@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns="http://www.w3.org/1999/xhtml"
+	template="/templates/default.xhtml">
+	
+	<ui:define name="content">
+	
+    <h:form>
+    
+     <h:dataTable value="#{koncertBean.allKoncerts}" var="item">
+      <f:facet name="header">#{msg.klubAllLabel}</f:facet>
+      
+      <h:column>
+        <f:facet name="header">#{msg.koncertKlubLabel}</f:facet>
+        #{item.klub.credentials}
+      </h:column>
+
+         <h:column>
+             <f:facet name="header">#{msg.koncertNazwaLabel}</f:facet>
+             #{item.nazwa_koncertu}
+         </h:column>
+
+         <h:column>
+             <f:facet name="header">#{msg.koncertCenyLabel}</f:facet>
+             #{item.ceny_biletow}
+         </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.action}</f:facet>
+        <h:commandLink value="#{msg.actionDelete}" action="#{koncertBean.deleteKoncert}"/>
+      </h:column>
+
+         <h:column>
+             <h:link value="#{msg.actionDetails}" outcome="previewKoncert?includeViewParams=true">
+                 <f:param name="id" value="#{item.idKoncert}"/>
+             </h:link>
+         </h:column>
+
+         <h:column>
+             <h:link value="#{msg.actionUpdate}" outcome="updateKoncert?includeViewParams=true">
+                 <f:param name="id" value="#{item.idKoncert}"/>
+             </h:link>
+         </h:column>
+      
+     </h:dataTable>
+    </h:form>
+      
+	</ui:define>
+	
+</ui:composition>

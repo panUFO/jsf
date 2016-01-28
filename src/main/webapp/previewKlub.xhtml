@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{klubBean.id}"/>
+		<f:event type="preRenderView" listener="#{klubBean.loadKlub}" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<h:form id="personform">
+			<h:panelGrid columns="2">
+				<h:outputText value="#{msg.klubMiastoLabel}"/>
+				<h:outputText value="#{klubBean.klub.miasto}"/>
+				<h:outputText value="#{msg.klubNazwaLabel}"/>
+				<h:outputText value="#{klubBean.klub.nazwa}"/>
+				<h:outputText value="#{msg.klubTelephoneLabel}"/>
+				<h:outputText value="#{klubBean.klub.telephoneNumber}"/>
+				<h:outputText value="#{msg.klubIloscLabel}"/>
+				<h:outputText value="#{klubBean.klub.ilosc_miejsc}"/>
+			</h:panelGrid>
+
+			<h:commandLink action="showKlubs?faces-redirect=true">
+				<h:outputText value="#{msg.backToList}" />
+			</h:commandLink>
+		</h:form>
+	</ui:define>
+</ui:composition>

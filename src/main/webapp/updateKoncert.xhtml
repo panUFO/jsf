@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns="http://www.w3.org/1999/xhtml"
+	template="/templates/default.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{koncertBean.id}"/>
+		<f:event type="preRenderView" listener="#{koncertBean.loadKoncert}" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<h:form id="productForm">
+			<h:panelGrid columns="2">
+				<h:outputText value="#{msg.koncertKlubLabel}" />
+				<h:selectOneMenu value="#{koncertBean.koncert.idKlub}">
+					<f:selectItems value="#{klubBean.allKlubs}" var="klub" itemValue="#{klub.idKlub}" itemLabel="#{klub.credentials}" />
+				</h:selectOneMenu>
+
+				<h:outputText value="#{msg.koncertNazwaLabel}" />
+				<h:inputText id="nazwa_koncertu" value="#{koncertBean.koncert.nazwa_koncertu}"/>
+
+				<h:outputText value="#{msg.koncertCenyLabel}" />
+				<h:inputText id="ceny_biletow" value="#{koncertBean.koncert.ceny_biletow}"/>
+
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.actionSave}"
+							 action="#{koncertBean.updateKoncert}" />
+
+			<h:panelGrid>
+				<h:messages id="messages" showDetail="#{true}"
+							showSummary="#{false}" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

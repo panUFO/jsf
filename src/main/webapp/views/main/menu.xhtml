@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns="http://www.w3.org/1999/xhtml">
+  <div>
+	<h:form>
+	  <ul>
+		<li>
+		  <h:commandLink action="home?faces-redirect=true">
+			<h:outputText value="#{msg.linkHome}" />
+		  </h:commandLink>
+		</li>
+		  <li>
+				#{msg.menuKlubs}
+			  <ul>
+				  <h:commandLink action="addKlub?faces-redirect=true">
+					  <h:outputText value="#{msg.klubAddLabel}" />
+				  </h:commandLink>
+			  </ul>
+			  <ul>
+				  <h:commandLink action="showKlubs?faces-redirect=true">
+					  <h:outputText value="#{msg.klubAllLabel}" />
+				  </h:commandLink>
+			  </ul>
+		  </li>
+
+		  <li>
+			  #{msg.menuKoncerts}
+			  <ul>
+				  <h:commandLink action="addKoncert?faces-redirect=true">
+					  <h:outputText value="#{msg.koncertAddLabel}" />
+				  </h:commandLink>
+			  </ul>
+			  <ul>
+				  <h:commandLink action="showKoncerts?faces-redirect=true">
+					  <h:outputText value="#{msg.orderAllLabel}" />
+				  </h:commandLink>
+			  </ul>
+		  </li>
+
+	</ul>
+   </h:form>
+  </div>
+</ui:composition>

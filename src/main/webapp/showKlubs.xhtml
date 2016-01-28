@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+	
+	<ui:define name="content">
+	
+    <h:form>
+    
+     <h:dataTable value="#{klubBean.allKlubs}" var="item">
+      <f:facet name="header">#{msg.klubAllLabel}</f:facet>
+      
+      <h:column>
+        <f:facet name="header">#{msg.klubMiastoLabel}</f:facet>
+        #{item.miasto}
+      </h:column>
+
+      <h:column>
+        <f:facet name="header">#{msg.klubNazwaLabel}</f:facet>
+        #{item.nazwa}
+      </h:column>
+
+         <h:column>
+             <f:facet name="header">#{msg.klubTelephoneLabel}</f:facet>
+             #{item.telephoneNumber}
+         </h:column>
+         <h:column>
+             <f:facet name="header">#{msg.klubIloscLabel}</f:facet>
+             #{item.ilosc_miejsc}
+         </h:column>
+
+
+
+         <h:column>
+        <f:facet name="header">#{msg.action}</f:facet>
+        <h:commandLink value="#{msg.actionDelete}" action="#{klubBean.deleteKlub}"/>
+      </h:column>
+
+         <h:column>
+             <h:link value="#{msg.actionDetails}" outcome="previewKlub?includeViewParams=true">
+                 <f:param name="id" value="#{item.idKlub}"/>
+             </h:link>
+         </h:column>
+
+         <h:column>
+             <h:link value="#{msg.actionUpdate}" outcome="updateKlub?includeViewParams=true">
+                 <f:param name="id" value="#{item.idKlub}"/>
+             </h:link>
+         </h:column>
+      
+     </h:dataTable>
+    </h:form>
+      
+	</ui:define>
+	
+</ui:composition>

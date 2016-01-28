@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns="http://www.w3.org/1999/xhtml"
+	template="/templates/default.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{koncertBean.id}"/>
+		<f:event type="preRenderView" listener="#{koncertBean.loadKoncert}" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<h:form id="koncertForm">
+			<h:panelGrid columns="2">
+				<h:outputText value="#{msg.koncertKlubLabel}"/>
+				<h:outputText value="#{koncertBean.koncert.klub.credentials}"/>
+				<h:outputText value="#{msg.koncertNazwaLabel}"/>
+				<h:outputText value="#{koncertBean.koncert.nazwa_koncertu}"/>
+				<h:outputText value="#{msg.koncertCenyLabel}"/>
+				<h:outputText value="#{koncertBean.koncert.ceny_biletow}"/>
+			</h:panelGrid>
+
+			<h:commandLink action="showKoncerts?faces-redirect=true">
+				<h:outputText value="#{msg.backToList}" />
+			</h:commandLink>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{klubBean.id}"/>
+		<f:event type="preRenderView" listener="#{klubBean.loadKlub}" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<h:form id="klubForm">
+			<h:panelGrid columns="2">
+				<h:outputText value="#{msg.klubFirstNameLabel}"/>
+				<h:inputText id="miasto" value="#{klubBean.klub.miasto}" required="#{true}"/>
+				<h:outputText value="#{msg.klubMiastoLabel}"/>
+
+				<h:inputText id="nazwa" value="#{klubBean.klub.nazwa}" required="#{true}"/>
+
+				<h:outputText value="#{msg.klubTelephoneLabel}"/>
+				<h:inputText id="telephoneNumber" value="#{klubBean.klub.telephoneNumber}" validator="#{klubBean.correctTelephone}" required="#{true}"/>
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.actionSave}"
+							 action="#{klubBean.updateKlub}" />
+
+			<h:panelGrid>
+				<h:messages id="messages" showDetail="#{true}"
+							showSummary="#{false}" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
